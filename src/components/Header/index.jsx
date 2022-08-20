@@ -1,16 +1,13 @@
-import { styled } from '../../stitches.config'
-
-const TopHeader = styled('header', {
-    backgroundColor: 'black',
-    color: 'white',
-})
+import { TopHeader, Logo } from "./style"
 
 export function Header() {
     return (
         <TopHeader>
             <div className='container'>
-                <h1>Teste</h1>
+                <header>
+                    <Logo />
+                </header>
             </div>
         </TopHeader>
     )
-}   
+}

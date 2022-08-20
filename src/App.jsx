@@ -1,5 +1,5 @@
 import { Header } from "./components/Header"
-import { globalStyles } from "./globalStyle"
+import { globalStyles } from "./global"
 
 export function App() {
 
