@@ -10,5 +10,5 @@ Recriando o projeto [Gameparty](https://github.com/pablodixs/projectGameparty) p
 - Vite
 
 ### Observações
-- Acesse a aplicação [aqui](betagameparty.vercel.app).
+- Acesse a aplicação [aqui](https://betagameparty.vercel.app).
 - Sem back end e responsividade.
