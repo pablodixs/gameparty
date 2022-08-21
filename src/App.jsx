@@ -1,12 +1,19 @@
+import React from 'react';
+import { Aside } from './components/Aside';
 import { Header } from "./components/Header"
-import { globalStyles } from "./global"
+import { Main } from './components/Main'
+import { Container, globalStyles } from "./global"
 
 export function App() {
+  {globalStyles()}
 
   return (
     <>
       <Header />
-      {globalStyles()}
+      <Container>
+        <Aside />
+        <Main />
+      </Container>
     </>  
     )
 }
