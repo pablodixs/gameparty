@@ -21,7 +21,6 @@ export const PrimaryButton = styled('button', {
                 '&:hover': {
                     backgroundColor: 'rgba(11, 11, 11, .8)',
                     outline: '2px solid #fff',
-                    outlineOffset: '2px',
                 }
             },
 
@@ -42,7 +41,7 @@ export const PrimaryButton = styled('button', {
 
                 '&:hover': {
                     backgroundColor: '$darkPink',
-                    outline: '2px solid #fff',
+                    outline: '1px solid #fff',
                     outlineOffset: '2px',
                 }
             },

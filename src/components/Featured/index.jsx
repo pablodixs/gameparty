@@ -4,7 +4,7 @@ import { FeatContainer, FeatImage, FeatLogo } from "./style"
 
 export function Featured() {
     return(
-        <Link to='/'>
+        <Link to='games/thelastofus'>
             <FeatContainer>
                 <FeatImage>
                     <FeatLogo src='https://gmedia.playstation.com/is/image/SIEPDC/the-last-of-us-part-i-logo-01-en-18may22?$1600px--t$' />

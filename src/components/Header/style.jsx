@@ -1,4 +1,5 @@
 import { styled } from '../../stitches.config'
+import LogoGame from '../../assets/gameparty_logo.svg'
 
 export const TopHeader = styled('header', {
     display: 'flex',
@@ -11,7 +12,7 @@ export const TopHeader = styled('header', {
 })
 
 export const Logo = styled('div', {
-    background: 'url(https://pablodixs.github.io/projectGameparty/assets/gameparty_logo.svg) center no-repeat',
+    background: `url(${LogoGame}) center no-repeat`,
     backgroundSize: 'contain',
     width: '130px',
     height: '25px',
@@ -40,7 +41,6 @@ export const SearchBar = styled('input', {
     borderRadius: '0.3em',
     padding: '0.5rem 1rem',
     transition: 'all ease-in-out 200ms',
-    outlineOffset: '2px',
     outline: '2px solid transparent',
     fontSize: '1rem',
     border: '1px solid rgba(255, 255, 255, .05)',
@@ -53,11 +53,6 @@ export const SearchBar = styled('input', {
     '&:focus': {
         width: '600px',
         outline: '2px solid #fff',
-        outlineOffset: '2px',
-    },
-
-    '&.none': {
-        display: 'none'
     },
 })
 
