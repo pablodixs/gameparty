@@ -7,7 +7,7 @@ export const TopHeader = styled('header', {
     justifyContent: 'space-between',
     color: 'white',
     padding: '1rem 0',
-    width: '1280px',
+    width: '1100px',
     margin: '0 auto',
 })
 

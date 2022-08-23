@@ -2,7 +2,7 @@ import { globalCss, styled } from "@stitches/react"
 
 export const Container = styled('div', {
     display: 'flex',
-    maxWidth: '1280px',
+    maxWidth: '1100px',
     margin: '100px auto 100px auto',
 })
 

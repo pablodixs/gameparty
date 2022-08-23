@@ -27,6 +27,10 @@ const MenuList = styled(
     },
 })
 
+export const GameTitle = styled('h1', {
+    fontWeight: '500',
+})
+
 export function MenuAside(props) {
     return (
         <MenuList>
