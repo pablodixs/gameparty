@@ -1,0 +1,52 @@
+[
+    {
+        "id": "game_001",
+        "nome": "Cyber Knights: Neon Uprising",
+        "descricao": "Um RPG tático ambientado num futuro distópico, com combate por turnos e narrativa profunda.",
+        "preco": 79.9,
+        "estrelas": 4.7,
+        "ano_lancamento": 2024,
+        "genero": "RPG tático",
+        "plataformas": ["PC", "PlayStation 5", "Xbox Series X"]
+    },
+    {
+        "id": "game_002",
+        "nome": "Skybound Racers",
+        "descricao": "Corridas de hovercraft em arenas flutuantes, com física realista e modo multiplayer online.",
+        "preco": 59.9,
+        "estrelas": 4.5,
+        "ano_lancamento": 2025,
+        "genero": "Corrida",
+        "plataformas": ["PC", "Nintendo Switch"]
+    },
+    {
+        "id": "game_003",
+        "nome": "Eternal Echoes",
+        "descricao": "Aventura em mundo aberto com foco em exploração e música interativa para resolver enigmas.",
+        "preco": 99.9,
+        "estrelas": 4.8,
+        "ano_lancamento": 2025,
+        "genero": "Aventura / Puzzle",
+        "plataformas": ["PC", "PlayStation 5"]
+    },
+    {
+        "id": "game_004",
+        "nome": "Galactic Frontier: Origins",
+        "descricao": "Simulador espacial com elementos de estratégia, diplomacia e combate entre galáxias.",
+        "preco": 149.9,
+        "estrelas": 4.6,
+        "ano_lancamento": 2024,
+        "genero": "Simulação / Estratégia",
+        "plataformas": ["PC"]
+    },
+    {
+        "id": "game_005",
+        "nome": "Haunted Hollow VR",
+        "descricao": "Experiência de terror imersivo em realidade virtual, com histórias ramificadas e sustos intensos.",
+        "preco": 129.9,
+        "estrelas": 4.4,
+        "ano_lancamento": 2025,
+        "genero": "Terror / VR",
+        "plataformas": ["Meta Quest 3", "PlayStation VR2"]
+    }
+]

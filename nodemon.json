@@ -1,0 +1,6 @@
+{
+    "watch": ["src", "views"],
+    "ext": "ts,html,mustache",
+    "ignore": ["dist"],
+    "exec": "ts-node src/server.ts"
+}
