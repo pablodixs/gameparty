@@ -91,7 +91,7 @@ app.post('/auth/login', (req: Request, res: Response) => {
     if (user) {
         req.session.user = user
 
-        res.redirect('/conta/biblioteca')
+        res.redirect('/')
 
         if (req.session.user.password !== user.password) {
             res.render('auth', {
@@ -119,8 +119,13 @@ app.post('/auth/cadastro', (req: Request, res: Response) => {
         })
     } else {
         createUser(name, username, password)
-        res.redirect('/conta')
+        res.redirect('/')
     }
+})
+
+app.get('/auth/logout', (req: Request, res: Response) => {
+    req.session.user = undefined
+    res.redirect('/')
 })
 
 app.listen(PORT, () => {
