@@ -3,7 +3,6 @@ import express, { Request, Response } from 'express'
 import mustacheExpress from 'mustache-express'
 import path from 'path'
 
-import highlightedGames from './utils/mock.json'
 import { createUser, findUser, User } from './services/userServices'
 import { authMiddleware } from './middlewares/authMiddleware'
 
@@ -42,10 +41,18 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.get('/auth', (req: Request, res: Response) => {
+    if (req.session.user) {
+        return res.redirect('/')
+    }
+
     res.render('auth')
 })
 
 app.get('/auth/cadastro', (req: Request, res: Response) => {
+    if (req.session.user) {
+        return res.redirect('/')
+    }
+
     res.render('cadastro')
 })
 

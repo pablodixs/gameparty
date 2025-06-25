@@ -51,7 +51,7 @@
                         </div>
                     </div>
                 </a>
-                {{/user}} {{#not user}}
+                {{/user}} {{#if not user}}
                 <a
                     href="#"
                     class="flex items-center gap-2 font-medium bg-red-600 text-white rounded-full py-2 px-6 hover:bg-red-700"
@@ -59,7 +59,7 @@
                     <i class="ph-bold ph-user"></i>
                     Iniciar sessão
                 </a>
-                {{/not user}}
+                {{/if not user}}
             </div>
         </header>
         <main class="max-w-[1000px] mx-auto py-8">
@@ -71,13 +71,13 @@
                     <hr class="text-neutral-200 block my-2" />
                     <a
                         class="flex gap-2 items-center py-2 font-medium hover:text-red-600 text-neutral-700"
-                        href="#"
+                        href="/conta"
                     >
                         <i class="text-xl ph-bold ph-user"></i>Conta</a
                     >
                     <a
                         class="flex gap-2 items-center py-2 font-medium hover:text-red-600 text-neutral-700"
-                        href="#"
+                        href="/conta/biblioteca"
                     >
                         <i class="text-xl ph-bold ph-squares-four"></i> Minha
                         Biblioteca</a

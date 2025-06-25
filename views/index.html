@@ -35,15 +35,13 @@
                         </li>
                     </ul>
                 </nav>
-                {{#not user}}
                 <a
-                    href="#"
+                    href="/auth"
                     class="flex items-center gap-2 font-medium bg-red-600 text-white rounded-full py-2 px-6 hover:bg-red-700"
                 >
                     <i class="ph-bold ph-user"></i>
                     Iniciar sessão
                 </a>
-                {{/not user}}
                 {{#user}}
                 <a href="/conta">
                     <div class="flex items-center gap-2">
