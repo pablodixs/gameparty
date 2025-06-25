@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
-        <title>Minha biblioteca - Gameparty</title>
+        <title>Minha conta - Gameparty</title>
     </head>
     <body>
         <header class="border-b border-gray-200 p-4">
@@ -92,15 +92,28 @@
                 </aside>
                 <div class="flex-1">
                     <h1 class="text-2xl font-semibold text-neutral-900 mb-4">
-                        Minha biblioteca
+                        Conta
                     </h1>
-                    <div>
-                        <span class="text-center text-neutral-400 block mt-10"
-                            >Nenhum jogo por aqui... <br />
-                            Você pode adiquirir novos jogos na
-                            <a class="text-red-600" href="/">Loja</a>.</span
-                        >
-                    </div>
+                    <label class="font-medium text-neutral-600" for="user"
+                        >Nome</label
+                    >
+                    <input
+                        class="bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-2 w-full mb-4"
+                        type="text"
+                        id="name"
+                        disabled
+                        value="{{user.name}}"
+                    />
+                    <label class="font-medium text-neutral-600" for="username"
+                        >Usuário</label
+                    >
+                    <input
+                        class="bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-2 w-full mb-4"
+                        type="text"
+                        id="username"
+                        disabled
+                        value="{{user.username}}"
+                    />
                 </div>
             </section>
         </main>

@@ -1,11 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
 
-declare module 'express-session' {
-    interface SessionData {
-        user?: any
-    }
-}
-
 export function authMiddleware(
     req: Request,
     res: Response,
@@ -14,6 +8,8 @@ export function authMiddleware(
     if (req.session.user) {
         next()
     } else {
-        res.redirect('/login')
+        res.render('auth', {
+            error: 'Você precisa estar autenticado para acessar esta página.',
+        })
     }
 }

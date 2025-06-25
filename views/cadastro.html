@@ -18,8 +18,8 @@
                         <li
                             class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
                         >
-                            <i class="ph-bold ph-house-line"></i>
-                            <a href="/">Página Inicial</a>
+                            <i class="ph-bold ph-bag"></i>
+                            <a href="/">Loja</a>
                         </li>
                         <li
                             class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
@@ -31,12 +31,12 @@
                             class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
                         >
                             <i class="ph-bold ph-squares-four"></i>
-                            <a href="#">Minha Biblioteca</a>
+                            <a href="/conta/biblioteca">Minha Biblioteca</a>
                         </li>
                     </ul>
                 </nav>
                 <a
-                    href="#"
+                    href="/auth"
                     class="flex items-center gap-2 font-medium bg-red-600 text-white rounded-full py-2 px-6 hover:bg-red-700"
                 >
                     <i class="ph-bold ph-user"></i>
@@ -57,16 +57,38 @@
                 <h1 class="text-2xl font-bold text-neutral-900 mb-4">
                     Criar conta
                 </h1>
+                {{#error}}
+                <div class="bg-red-50 rounded-lg p-4 my-4">
+                    <span
+                        class="text-red-600 flex items-center gap-2 font-medium"
+                    >
+                        <i class="text-xl ph-bold ph-warning"></i> {{error}}
+                    </span>
+                </div>
+                {{/error}}
                 <div>
-                    <form action="post">
+                    <form action="/auth/cadastro" method="POST">
                         <label class="font-medium text-neutral-600" for="user"
+                            >Nome</label
+                        >
+                        <input
+                            class="bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-2 w-full mb-4"
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Digite seu nome"
+                            required
+                        />
+                        <label
+                            class="font-medium text-neutral-600"
+                            for="username"
                             >Usuário</label
                         >
                         <input
                             class="bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-2 w-full mb-4"
                             type="text"
-                            id="user"
-                            name="user"
+                            id="username"
+                            name="username"
                             placeholder="Digite um nome de usuário"
                             required
                         />
@@ -81,19 +103,6 @@
                             id="password"
                             name="password"
                             placeholder="Digite sua senha"
-                            required
-                        />
-                        <label
-                            class="font-medium text-neutral-600"
-                            for="password"
-                            >Confirme a senha</label
-                        >
-                        <input
-                            class="bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-2 w-full mb-4"
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Digite sua senha novamente"
                             required
                         />
                         <button
