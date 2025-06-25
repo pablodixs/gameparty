@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
-        <title>Login - Gameparty</title>
+        <title>Cadastro - Gameparty</title>
     </head>
     <body>
         <header class="border-b border-gray-200 p-4">
@@ -45,8 +45,18 @@
             </div>
         </header>
         <main class="max-w-[1000px] mx-auto py-8">
-            <h1 class="text-2xl font-bold text-neutral-900">Iniciar sessão</h1>
-            <section class="flex mt-4 gap-16">
+            <section class="max-w-md mx-auto">
+                <a href="/auth" class="mb-4 flex items-center gap-2">
+                    <span
+                        class="flex items-center gap-2 bg-red-600 text-white rounded-full p-2"
+                    >
+                        <i class="ph-bold ph-arrow-left"></i>
+                    </span>
+                    <span class="font-medium text-neutral-800">Voltar</span>
+                </a>
+                <h1 class="text-2xl font-bold text-neutral-900 mb-4">
+                    Criar conta
+                </h1>
                 <div>
                     <form action="post">
                         <label class="font-medium text-neutral-600" for="user"
@@ -57,7 +67,7 @@
                             type="text"
                             id="user"
                             name="user"
-                            placeholder="Digite seu nome de usuário"
+                            placeholder="Digite um nome de usuário"
                             required
                         />
                         <label
@@ -73,30 +83,37 @@
                             placeholder="Digite sua senha"
                             required
                         />
+                        <label
+                            class="font-medium text-neutral-600"
+                            for="password"
+                            >Confirme a senha</label
+                        >
+                        <input
+                            class="bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-2 w-full mb-4"
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Digite sua senha novamente"
+                            required
+                        />
                         <button
                             type="submit"
                             class="w-full mt-4 flex justify-between text-nowrap flex items-center gap-2 font-medium bg-red-600 text-white rounded-full px-4 py-3 hover:bg-red-700"
                         >
-                            Entrar
+                            Cadastrar
                             <i class="ph-bold ph-arrow-right"></i>
                         </button>
                     </form>
-                </div>
-                <div class="bg-red-600 p-6 rounded-lg text-white">
-                    <h2 class="text-xl font-semibold mb-4">
-                        Não tem uma conta?
-                    </h2>
-                    <p class="mb-4">
-                        Crie uma conta para acessar todos os recursos da
-                        Gameparty.
-                    </p>
-                    <a
-                        href="/auth/cadastro"
-                        class="flex items-center justify-between gap-2 font-medium bg-white text-neutral-900 rounded-full px-6 py-2 hover:bg-neutral-300"
+                    <span
+                        class="mt-8 text-neutral-600 text-sm block text-center"
                     >
-                        Criar conta
-                        <i class="ph-bold ph-arrow-right"></i>
-                    </a>
+                        Já tem uma conta?
+                        <a
+                            class="font-medium text-red-600 hover:text-red-500"
+                            href="/auth"
+                            >Faça login</a
+                        ></span
+                    >
                 </div>
             </section>
         </main>

@@ -25,6 +25,11 @@ app.get('/auth', (req: Request, res: Response) => {
     res.render('auth')
 })
 
+app.get('/auth/cadastro', (req: Request, res: Response) => {
+    console.log(highlightedGames)
+    res.render('cadastro')
+})
+
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`)
 })
