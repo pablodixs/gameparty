@@ -5,6 +5,7 @@ import path from 'path'
 
 import { createUser, findUser, User } from './services/userServices'
 import { authMiddleware } from './middlewares/authMiddleware'
+import { getAllGames } from './services/gameServices'
 
 declare module 'express-session' {
     interface SessionData {
@@ -35,8 +36,17 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req: Request, res: Response) => {
+    const games = getAllGames()
+
+    if (!req.session.user) {
+        return res.render('index', {
+            user: undefined,
+            games,
+        })
+    }
     res.render('index', {
         user: req.session.user,
+        games,
     })
 })
 
