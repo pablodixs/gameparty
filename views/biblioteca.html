@@ -122,6 +122,7 @@
                                     </div>
                                     <div class="flex items-center gap-2 mt-2">
                                         <button
+                                            onclick=""
                                             class="flex items-center gap-2 bg-neutral-200 hover:bg-neutral-300 rounded-full py-2 px-4 text-sm cursor-pointer font-medium text-neutral-600"
                                         >
                                             <i class="ph-bold ph-trash"></i>
@@ -146,3 +147,20 @@
         </main>
     </body>
 </html>
+<script>
+    function handleDeleteGame() {
+        fetch('/remove/{{game.id}}', {
+            method: 'DELETE',
+        })
+            .then((response) => {
+                if (response.ok) {
+                    console.log('Apagado!')
+                } else {
+                    console.error('Erro ao apagar o jogo.')
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error)
+            })
+    }
+</script>

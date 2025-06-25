@@ -48,3 +48,18 @@ export function addGameToUser(username: string, gameId: number) {
         )
         .run(user.id, gameId)
 }
+
+export function removeGameFromUser(username: string, gameId: number) {
+    const user = getUserByUsername(username)
+
+    if (!user) throw new Error('Usuário não encontrado')
+
+    return db
+        .prepare(
+            `
+            DELETE FROM user_games
+            WHERE user_id = ? AND game_id = ?
+        `
+        )
+        .run(user.id, gameId)
+}

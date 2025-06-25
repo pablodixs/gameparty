@@ -11,6 +11,7 @@ import {
     getGameById,
     addGameToUser,
     Game,
+    removeGameFromUser,
 } from './services/gameServices'
 
 declare module 'express-session' {
@@ -113,6 +114,20 @@ app.get('/buy/:id', authMiddleware, (req: Request, res: Response) => {
         user: req.session.user,
         game,
     })
+})
+
+app.delete('/remove/:id', authMiddleware, (req: Request, res: Response) => {
+    const gameId = Number(req.params.id)
+    const username = req.session.user?.username
+
+    if (!username) {
+        res.status(403).send('Usuário não autenticado')
+        return
+    }
+
+    removeGameFromUser(username, gameId)
+
+    res.redirect('/conta/biblioteca')
 })
 
 // Autenticação
