@@ -4,7 +4,6 @@ import path from 'path'
 const dbPath = path.resolve(__dirname, '../db/app.db')
 const db = new Database(dbPath)
 
-// Criação da tabela de usuários (só na primeira vez)
 db.exec(`
     CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

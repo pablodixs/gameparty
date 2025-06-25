@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
+        <title>Cadastro - Gameparty</title>
+    </head>
+    <body>
+        <header class="border-b border-gray-200 p-4">
+            <div
+                class="max-w-[1000px] mx-auto flex items-center justify-between"
+            >
+                <img class="w-48" src="/images/logo.svg" alt="" />
+                <nav>
+                    <ul class="flex gap-2">
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="ph-bold ph-bag"></i>
+                            <a href="/">Loja</a>
+                        </li>
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="ph-bold ph-joystick"></i>
+                            <a href="#">Jogos</a>
+                        </li>
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="ph-bold ph-squares-four"></i>
+                            <a href="#">Minha Biblioteca</a>
+                        </li>
+                    </ul>
+                </nav>
+                <a
+                    href="#"
+                    class="flex items-center gap-2 font-medium bg-red-600 text-white rounded-full py-2 px-6 hover:bg-red-700"
+                >
+                    <i class="ph-bold ph-user"></i>
+                    Iniciar sessão
+                </a>
+            </div>
+        </header>
+        <main class="max-w-[1000px] mx-auto py-8">
+            <section class="flex gap-4">
+                <aside
+                    class="border-r border-neutral-200 pr-4 mb-4 w-[20%] h-[50vh]"
+                >
+                    <a
+                        class="flex gap-2 items-center py-2 font-medium hover:text-red-600 text-neutral-700"
+                        href="#"
+                    >
+                        <i class="text-xl ph-bold ph-user"></i>Conta</a
+                    >
+                    <a
+                        class="flex gap-2 items-center py-2 font-medium hover:text-red-600 text-neutral-700"
+                        href="#"
+                    >
+                        <i class="text-xl ph-bold ph-squares-four"></i> Minha
+                        Biblioteca</a
+                    >
+                    <hr class="text-neutral-200 block my-2" />
+                    <a
+                        class="flex gap-2 items-center py-2 hover:text-red-900 text-red-600"
+                        href="#"
+                    >
+                        <i class="text-xl ph ph-sign-out"></i> Sair</a
+                    >
+                </aside>
+                <div class="flex-1">
+                    <h1 class="text-2xl font-semibold text-neutral-900 mb-4">
+                        Minha biblioteca
+                    </h1>
+                    <div>
+                        <span class="text-center text-neutral-400 block mt-10"
+                            >Nenhum jogo por aqui... <br />
+                            Você pode adiquirir novos jogos na
+                            <a class="text-red-600" href="/">Loja</a>.</span
+                        >
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
