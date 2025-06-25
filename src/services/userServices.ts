@@ -1,8 +1,15 @@
 import db from './../db/database'
 
 export type User = {
+    id: number
     username: string
     password: string
+}
+
+export function getUserByUsername(username: string): User | undefined {
+    return db
+        .prepare('SELECT * FROM users WHERE username = ?')
+        .get(username) as User | undefined
 }
 
 export function findUser(username: string, password: string) {

@@ -5,7 +5,13 @@ import path from 'path'
 
 import { createUser, findUser, User } from './services/userServices'
 import { authMiddleware } from './middlewares/authMiddleware'
-import { getAllGames } from './services/gameServices'
+import {
+    getAllGames,
+    getGamesByUser,
+    getGameById,
+    addGameToUser,
+    Game,
+} from './services/gameServices'
 
 declare module 'express-session' {
     interface SessionData {
@@ -67,15 +73,45 @@ app.get('/auth/cadastro', (req: Request, res: Response) => {
 })
 
 app.get('/conta/biblioteca', authMiddleware, (req: Request, res: Response) => {
-    console.log(req.session.user)
+    if (!req.session.user) {
+        return res.redirect('/')
+    }
+
+    const games = getGamesByUser(req.session.user.username)
+
     res.render('biblioteca', {
         user: req.session.user,
+        games,
     })
 })
 
 app.get('/conta', authMiddleware, (req: Request, res: Response) => {
     res.render('conta', {
         user: req.session.user,
+    })
+})
+
+app.get('/buy/:id', authMiddleware, (req: Request, res: Response) => {
+    const gameId = Number(req.params.id)
+    const username = req.session.user?.username
+
+    const game = getGameById(gameId)
+
+    if (!game) {
+        res.status(404).send('Jogo não encontrado')
+        return
+    }
+
+    if (!username) {
+        res.status(403).send('Usuário não autenticado')
+        return
+    }
+
+    addGameToUser(username, gameId)
+
+    res.render('compra', {
+        user: req.session.user,
+        game,
     })
 })
 

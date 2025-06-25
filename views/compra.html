@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
+        <title>Cadastro - Gameparty</title>
+    </head>
+    <body>
+        <header class="border-b border-gray-200 p-4">
+            <div
+                class="max-w-[1000px] mx-auto flex items-center justify-between"
+            >
+                <img class="w-48" src="/images/logo.svg" alt="" />
+                <nav>
+                    <ul class="flex gap-2">
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="ph-bold ph-bag"></i>
+                            <a href="/">Loja</a>
+                        </li>
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="ph-bold ph-squares-four"></i>
+                            <a href="/conta/biblioteca">Minha Biblioteca</a>
+                        </li>
+                    </ul>
+                </nav>
+                {{#user}}
+                <a href="/conta">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="flex items-center justify-center w-10 h-10 bg-red-600 rounded-full"
+                        >
+                            <i class="text-xl ph-bold ph-user text-white"></i>
+                        </span>
+                        <div>
+                            <p class="font-medium">{{user.name}}</p>
+                            <span class="text-sm text-neutral-500 block"
+                                >{{user.username}}</span
+                            >
+                        </div>
+                    </div>
+                </a>
+                {{/user}}
+            </div>
+        </header>
+        <main class="max-w-[1000px] mx-auto py-8">
+            <div class="text-center flex items-center flex-col">
+                {{#game}}
+                <i class="ph ph-check-circle text-8xl text-green-500"></i>
+                <h1 class="text-3xl font-bold text-center">
+                    Parabéns pela compra!
+                </h1>
+                <strong class="text-neutral-500 font-medium block mt-4"
+                    >Você comprou {{name}}!</strong
+                >
+                <img class="rounded-lg my-4" src="{{cover_image}}" alt="" />
+                <a
+                    href="/conta/biblioteca"
+                    class="mt-4 inline-block bg-neutral-200 rounded-full py-2 px-4"
+                >
+                    Ir para minha biblioteca
+                    <i class="ph ph-arrow-right"></i>
+                </a>
+                {{/game}}
+            </div>
+        </main>
+    </body>
+</html>

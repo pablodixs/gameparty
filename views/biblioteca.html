@@ -92,11 +92,54 @@
                         Minha biblioteca
                     </h1>
                     <div>
+                        {{^games}}
                         <span class="text-center text-neutral-400 block mt-10"
                             >Nenhum jogo por aqui... <br />
                             Você pode adiquirir novos jogos na
                             <a class="text-red-600" href="/">Loja</a>.</span
                         >
+                        {{/games}}
+                        <div>
+                            {{#games}}
+                            <div class="flex gap-4 mb-6">
+                                <img
+                                    class="h-32 w-[250px] rounded object-cover"
+                                    src="{{cover_image}}"
+                                    alt=""
+                                />
+                                <div
+                                    class="flex flex-col justify-between min-h-full"
+                                >
+                                    <div class="flex-1">
+                                        <h2
+                                            class="font-medium text-neutral-900"
+                                        >
+                                            {{name}}
+                                        </h2>
+                                        <p class="text-sm text-neutral-500">
+                                            {{description}}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <button
+                                            class="flex items-center gap-2 bg-neutral-200 hover:bg-neutral-300 rounded-full py-2 px-4 text-sm cursor-pointer font-medium text-neutral-600"
+                                        >
+                                            <i class="ph-bold ph-trash"></i>
+                                            Apagar da biblioteca
+                                        </button>
+                                        <button
+                                            class="flex items-center gap-2 bg-neutral-200 hover:bg-neutral-300 rounded-full py-2 px-4 text-sm cursor-pointer font-medium text-neutral-600"
+                                        >
+                                            <i
+                                                class="ph-bold ph-arrow-u-up-left"
+                                            ></i>
+                                            Reembolso
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/games}}
+                        </div>
                     </div>
                 </div>
             </section>
