@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
+        <script src="/images/script.js"></script>
+        <title>{{game.name}} - Gameparty</title>
+    </head>
+    <body>
+        <header class="border-b border-gray-200 p-4">
+            <div
+                class="max-w-[1000px] mx-auto flex items-center justify-between"
+            >
+                <img class="w-48" src="/images/logo.svg" alt="" />
+                <nav>
+                    <ul class="flex gap-2">
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="ph-bold ph-bag"></i>
+                            <a href="/">Loja</a>
+                        </li>
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        ></li>
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="text-xl ph-bold ph-squares-four"></i>
+                            <a href="/conta/biblioteca">Minha Biblioteca</a>
+                        </li>
+                    </ul>
+                </nav>
+                {{#user}}
+                <a href="/conta">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="flex items-center justify-center w-10 h-10 bg-red-600 rounded-full"
+                        >
+                            <i class="text-xl ph-bold ph-user text-white"></i>
+                        </span>
+                        <div>
+                            <p class="font-medium">{{user.name}}</p>
+                            <span class="text-sm text-neutral-500 block"
+                                >{{user.username}}</span
+                            >
+                        </div>
+                    </div>
+                </a>
+                {{/user}} {{#not user}}
+                <a
+                    href="#"
+                    class="flex items-center gap-2 font-medium bg-red-600 text-white rounded-full py-2 px-6 hover:bg-red-700"
+                >
+                    <i class="ph-bold ph-user"></i>
+                    Iniciar sessão
+                </a>
+                {{/not user}}
+            </div>
+        </header>
+        <main class="max-w-[1000px] mx-auto py-8">
+            {{#game}}
+            <section class="">
+                <img
+                    class="max-w-96 rounded mb-4"
+                    src="{{cover_image}}"
+                    alt=""
+                />
+                <h1 class="text-2xl font-medium">{{name }}</h1>
+                <p class="text-neutral-500">{{description}}</p>
+            </section>
+            {{/game}}
+            <section
+                class="mt-4 border-t border-neutral-200 pt-4 flex flex-col gap-4"
+            >
+                <h2 class="text-xl font-medium text-neutral-700">Avaliações</h2>
+                {{#ratings}}
+                <div class="flex gap-2 items-center">
+                    <span
+                        class="flex p-2 bg-red-600 rounded-full aspect-square"
+                    >
+                        <i
+                            class="text-white text-5xl ph-fill ph-user-circle"
+                        ></i>
+                    </span>
+                    <div>
+                        <p
+                            class="flex items-center gap-2 text-yellow-600 font-bold"
+                        >
+                            <i class="text-lg ph-fill ph-star"></i> {{rating}}/5
+                        </p>
+                        <p class="italic font-medium mt-1">{{comment}}</p>
+                    </div>
+                </div>
+                {{/ratings}}
+            </section>
+        </main>
+    </body>
+</html>

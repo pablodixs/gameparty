@@ -83,7 +83,7 @@
                     </div>
                     <div class="flex gap-4">
                         <a
-                            href="#"
+                            href="/game/1"
                             class="text-nowrap flex items-center gap-2 font-medium bg-neutral-200 rounded-full px-6 py-2 hover:bg-neutral-300"
                         >
                             Ver mais
@@ -110,12 +110,14 @@
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {{#games}}
                     <div class="bg-white rounded-lg border border-gray-200 p-4">
-                        <img
-                            class="w-full h-36 object-cover rounded"
-                            src="{{cover_image}}"
-                            alt="{{name}}"
-                        />
-                        <h3 class="text-lg font-semibold mt-2 mb-4">{{name}}</h3>
+                        <a href="/game/{{id}}">
+                            <img
+                                class="w-full h-36 object-cover rounded"
+                                src="{{cover_image}}"
+                                alt="{{name}}"
+                            />
+                            <h3 class="text-lg font-semibold mt-2 mb-4">{{name}}</h3>
+                        </a>
                         <a
                             href="/buy/{{id}}"
                             class="flex justify-between text-nowrap flex items-center gap-2 font-medium bg-red-600 text-white rounded-full py-2 px-2 pl-4 hover:bg-red-700"

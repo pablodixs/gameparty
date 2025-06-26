@@ -114,6 +114,19 @@ app.get('/conta', authMiddleware, (req: Request, res: Response) => {
 })
 
 // Games
+app.get('/game/:id', (req: Request, res: Response) => {
+    const gameId = Number(req.params.id)
+
+    const game = getGameById(gameId)
+    const ratings = getGameRatings(gameId)
+
+    if (!game) {
+        res.status(404).send('Jogo não encontrado')
+        return
+    }
+
+    res.render('game', { game, ratings })
+})
 
 app.get('/buy/:id', authMiddleware, (req: Request, res: Response) => {
     const gameId = Number(req.params.id)
