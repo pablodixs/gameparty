@@ -10,7 +10,6 @@ import {
     getGamesByUser,
     getGameById,
     addGameToUser,
-    Game,
     removeGameFromUser,
 } from './services/gameServices'
 
@@ -24,7 +23,7 @@ declare module 'express-session' {
 }
 
 const app = express()
-const PORT = 3333
+const PORT = 3000
 
 app.use(
     session({
@@ -34,13 +33,13 @@ app.use(
     })
 )
 
+app.use(express.static(path.join(__dirname, '../public')))
+app.use(express.urlencoded({ extended: true }))
+
 app.engine('html', mustacheExpress())
 app.set('view engine', 'html')
 app.set('views', path.join(__dirname, '../views'))
 app.set('view cache', false)
-
-app.use(express.static(path.join(__dirname, '../public')))
-app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req: Request, res: Response) => {
     const games = getAllGames()
@@ -116,19 +115,26 @@ app.get('/buy/:id', authMiddleware, (req: Request, res: Response) => {
     })
 })
 
-app.delete('/remove/:id', authMiddleware, (req: Request, res: Response) => {
-    const gameId = Number(req.params.id)
-    const username = req.session.user?.username
+app.delete(
+    '/games/remove/:id',
+    authMiddleware,
+    (req: Request, res: Response) => {
+        const gameId = Number(req.params.id)
+        const username = req.session.user?.username
 
-    if (!username) {
-        res.status(403).send('Usuário não autenticado')
-        return
+        if (!username) {
+            res.status(403).json({ error: 'Usuário não autenticado' })
+            return
+        }
+
+        try {
+            removeGameFromUser(username, gameId)
+            res.status(200).json({ message: 'Jogo removido com sucesso' })
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao remover jogo' })
+        }
     }
-
-    removeGameFromUser(username, gameId)
-
-    res.redirect('/conta/biblioteca')
-})
+)
 
 // Autenticação
 app.post('/auth/login', (req: Request, res: Response) => {
