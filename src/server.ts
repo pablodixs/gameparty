@@ -3,7 +3,12 @@ import express, { Request, Response } from 'express'
 import mustacheExpress from 'mustache-express'
 import path from 'path'
 
-import { createUser, findUser, User } from './services/userServices'
+import {
+    createUser,
+    findUser,
+    getUserByUsername,
+    User,
+} from './services/userServices'
 import { authMiddleware } from './middlewares/authMiddleware'
 import {
     getAllGames,
@@ -11,6 +16,9 @@ import {
     getGameById,
     addGameToUser,
     removeGameFromUser,
+    rateGame,
+    getUserRating,
+    getGameRatings,
 } from './services/gameServices'
 
 declare module 'express-session' {
@@ -35,6 +43,7 @@ app.use(
 
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
 app.engine('html', mustacheExpress())
 app.set('view engine', 'html')
@@ -85,11 +94,26 @@ app.get('/conta/biblioteca', authMiddleware, (req: Request, res: Response) => {
     })
 })
 
+app.get('/conta/avaliacoes', authMiddleware, (req: Request, res: Response) => {
+    if (!req.session.user) {
+        return res.redirect('/')
+    }
+
+    const games = getGamesByUser(req.session.user.username)
+
+    res.render('avaliacoes', {
+        user: req.session.user,
+        games,
+    })
+})
+
 app.get('/conta', authMiddleware, (req: Request, res: Response) => {
     res.render('conta', {
         user: req.session.user,
     })
 })
+
+// Games
 
 app.get('/buy/:id', authMiddleware, (req: Request, res: Response) => {
     const gameId = Number(req.params.id)
@@ -132,6 +156,74 @@ app.delete(
             res.status(200).json({ message: 'Jogo removido com sucesso' })
         } catch (error) {
             res.status(500).json({ error: 'Erro ao remover jogo' })
+        }
+    }
+)
+
+app.post('/games/:id/rating', authMiddleware, (req: Request, res: Response) => {
+    const gameId = Number(req.params.id)
+
+    // Verifica se req.body existe e tem os campos necessários
+    if (!req.body || typeof req.body !== 'object') {
+        res.status(400).json({ error: 'Dados inválidos enviados' })
+        return
+    }
+
+    const { rating, comment } = req.body
+    const username = req.session.user?.username
+
+    if (!username) {
+        res.status(403).json({ error: 'Usuário não autenticado' })
+        return
+    }
+
+    if (!rating || rating < 1 || rating > 5) {
+        res.status(400).json({ error: 'Avaliação deve estar entre 1 e 5' })
+        return
+    }
+
+    try {
+        rateGame(username, gameId, rating, comment)
+        res.status(200).json({ message: 'Avaliação enviada com sucesso' })
+    } catch (error) {
+        console.error('Erro ao salvar avaliação:', error)
+        res.status(500).json({
+            error:
+                error instanceof Error
+                    ? error.message
+                    : 'Erro interno do servidor',
+        })
+    }
+})
+
+app.get('/games/:id/ratings', (req: Request, res: Response) => {
+    const gameId = Number(req.params.id)
+
+    try {
+        const ratings = getGameRatings(gameId)
+        res.json(ratings)
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao obter avaliações do jogo' })
+    }
+})
+
+app.get(
+    '/games/:id/my-rating',
+    authMiddleware,
+    (req: Request, res: Response) => {
+        const gameId = Number(req.params.id)
+        const username = req.session.user?.username
+
+        if (!username) {
+            res.status(403).json({ error: 'Usuário não autenticado' })
+            return
+        }
+
+        try {
+            const rating = getUserRating(username, gameId)
+            res.json(rating)
+        } catch (error) {
+            res.status(500).json({ error: 'Erro ao obter sua avaliação' })
         }
     }
 )

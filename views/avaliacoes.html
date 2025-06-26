@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2"></script>
+        <script src="/images/script.js"></script>
+        <title>Minhas avaliações - Gameparty</title>
+    </head>
+    <body>
+        <header class="border-b border-gray-200 p-4">
+            <div
+                class="max-w-[1000px] mx-auto flex items-center justify-between"
+            >
+                <img class="w-48" src="/images/logo.svg" alt="" />
+                <nav>
+                    <ul class="flex gap-2">
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="ph-bold ph-bag"></i>
+                            <a href="/">Loja</a>
+                        </li>
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        ></li>
+                        <li
+                            class="flex items-center gap-2 font-medium hover:text-red-500 rounded py-2 px-4"
+                        >
+                            <i class="text-xl ph-bold ph-squares-four"></i>
+                            <a href="/conta/biblioteca">Minha Biblioteca</a>
+                        </li>
+                    </ul>
+                </nav>
+                {{#user}}
+                <a href="/conta">
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="flex items-center justify-center w-10 h-10 bg-red-600 rounded-full"
+                        >
+                            <i class="text-xl ph-bold ph-user text-white"></i>
+                        </span>
+                        <div>
+                            <p class="font-medium">{{user.name}}</p>
+                            <span class="text-sm text-neutral-500 block"
+                                >{{user.username}}</span
+                            >
+                        </div>
+                    </div>
+                </a>
+                {{/user}} {{#not user}}
+                <a
+                    href="#"
+                    class="flex items-center gap-2 font-medium bg-red-600 text-white rounded-full py-2 px-6 hover:bg-red-700"
+                >
+                    <i class="ph-bold ph-user"></i>
+                    Iniciar sessão
+                </a>
+                {{/not user}}
+            </div>
+        </header>
+        <main class="max-w-[1000px] mx-auto py-8">
+            <section class="flex gap-4">
+                <aside
+                    class="border-r border-neutral-200 pr-4 mb-4 w-[20%] h-[50vh]"
+                >
+                    <h2 class="font-lg mb-4 font-medium">Olá, {{user.name}}</h2>
+                    <hr class="text-neutral-200 block my-2" />
+                    <a
+                        class="flex gap-2 items-center py-2 font-medium hover:text-red-600 text-neutral-700"
+                        href="/conta"
+                    >
+                        <i class="text-xl ph-bold ph-user"></i>Conta</a
+                    >
+                    <a
+                        class="flex gap-2 items-center py-2 font-medium hover:text-red-600 text-neutral-700"
+                        href="/conta/biblioteca"
+                    >
+                        <i class="text-xl ph-bold ph-squares-four"></i> Minha
+                        Biblioteca</a
+                    >
+                    <a
+                        class="flex gap-2 items-center py-2 font-medium hover:text-red-600 text-neutral-700"
+                        href="/conta/avaliacoes"
+                    >
+                        <i class="text-xl ph-bold ph-star"></i> Minhas
+                        Avaliações</a
+                    >
+                    <hr class="text-neutral-200 block my-2" />
+                    <a
+                        class="flex gap-2 items-center py-2 hover:text-red-900 text-red-600"
+                        href="/auth/logout"
+                    >
+                        <i class="text-xl ph ph-sign-out"></i> Sair</a
+                    >
+                </aside>
+                <div class="flex-1">
+                    <h1 class="text-2xl font-semibold text-neutral-900 mb-4">
+                        Minhas avaliações
+                    </h1>
+                    <div>
+                        {{^games}}
+                        <span class="text-center text-neutral-400 block mt-10"
+                            >Nenhum jogo na biblioteca para avaliar...</span
+                        >
+                        {{/games}}
+                        <div>
+                            {{#games}}
+                            <div class="flex gap-4 mb-6 pb-4">
+                                <img
+                                    class="h-32 w-[250px] aspect-video rounded object-cover"
+                                    src="{{cover_image}}"
+                                    alt=""
+                                />
+                                <div
+                                    class="flex flex-col justify-between min-h-full w-full"
+                                >
+                                    <div class="flex-1 w-full">
+                                        <h2
+                                            class="font-medium text-neutral-900 text-lg"
+                                        >
+                                            {{name}}
+                                        </h2>
+                                        <p
+                                            class="text-sm text-neutral-600 mt-1"
+                                        >
+                                            {{genre}}
+                                        </p>
+                                        <textarea
+                                            class="bg-neutral-50 p-2 transition-all outline-none rounded text-neutral-800 mt-2 w-full resize-none italic hover:bg-neutral-200"
+                                            placeholder="Escreva sua avaliação"
+                                            data-game-id="{{id}}"
+                                        ></textarea>
+                                    </div>
+                                    <div
+                                        class="flex items-center justify-between gap-2 mt-4"
+                                    >
+                                        <div
+                                            class="flex items-center gap-1"
+                                            data-game-id="{{id}}"
+                                        >
+                                            <button
+                                                class="star-btn cursor-pointer text-2xl text-neutral-300 transition-colors"
+                                                data-rating="1"
+                                                data-game-id="{{id}}"
+                                            >
+                                                <i
+                                                    class="text-neutral-300 ph ph-star"
+                                                ></i>
+                                            </button>
+                                            <button
+                                                class="star-btn cursor-pointer text-2xl text-neutral-300 transition-colors"
+                                                data-rating="2"
+                                                data-game-id="{{id}}"
+                                            >
+                                                <i
+                                                    class="text-neutral-300 ph ph-star"
+                                                ></i>
+                                            </button>
+                                            <button
+                                                class="star-btn cursor-pointer text-2xl text-neutral-300 transition-colors"
+                                                data-rating="3"
+                                                data-game-id="{{id}}"
+                                            >
+                                                <i
+                                                    class="text-neutral-300 ph ph-star"
+                                                ></i>
+                                            </button>
+                                            <button
+                                                class="star-btn cursor-pointer text-2xl text-neutral-300 transition-colors"
+                                                data-rating="4"
+                                                data-game-id="{{id}}"
+                                            >
+                                                <i
+                                                    class="text-neutral-300 ph ph-star"
+                                                ></i>
+                                            </button>
+                                            <button
+                                                class="star-btn cursor-pointer text-2xl text-neutral-300 transition-colors"
+                                                data-rating="5"
+                                                data-game-id="{{id}}"
+                                            >
+                                                <i
+                                                    class="text-neutral-300 ph ph-star"
+                                                ></i>
+                                            </button>
+                                            <span
+                                                class="ml-2 text-sm text-neutral-500"
+                                            >
+                                                <span class="selected-rating"
+                                                    >0</span
+                                                >/5
+                                            </span>
+                                        </div>
+                                        <button
+                                            class="rate-btn bg-red-600 hover:bg-red-700 text-white rounded-full py-2 px-4 font-medium cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                                            data-game-id="{{id}}"
+                                            disabled
+                                        >
+                                            Avaliar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/games}}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const starContainers =
+                    document.querySelectorAll('[data-game-id]')
+
+                starContainers.forEach((container) => {
+                    const gameId = container.dataset.gameId
+                    const stars = container.querySelectorAll('.star-btn')
+                    const ratingDisplay =
+                        container.querySelector('.selected-rating')
+                    const rateBtn = document.querySelector(
+                        `.rate-btn[data-game-id="${gameId}"]`
+                    )
+                    let selectedRating = 0
+
+                    function updateStars(stars, rating) {
+                        stars.forEach((star, index) => {
+                            const starRating = index + 1
+                            const icon = star.querySelector('i')
+
+                            if (starRating <= rating) {
+                                icon.className =
+                                    'ph-fill ph-star text-yellow-400'
+                            } else {
+                                icon.className = 'ph ph-star text-neutral-300'
+                            }
+                        })
+                    }
+
+                    function loadExistingRating() {
+                        fetch(`/games/${gameId}/my-rating`)
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error(
+                                        `HTTP error! status: ${response.status}`
+                                    )
+                                }
+                                return response.json()
+                            })
+                            .then((data) => {
+                                if (data && data.rating) {
+                                    selectedRating = data.rating
+                                    updateStars(stars, data.rating)
+                                    ratingDisplay.textContent = data.rating
+                                    rateBtn.disabled = false
+
+                                    const textarea = document.querySelector(
+                                        `textarea[data-game-id="${gameId}"]`
+                                    )
+                                    if (data.comment) {
+                                        textarea.value = data.comment
+                                    }
+                                }
+                            })
+                            .catch((error) => {
+                                console.log(
+                                    'Nenhuma avaliação existente:',
+                                    error.message
+                                )
+                            })
+                    }
+
+                    loadExistingRating()
+
+                    stars.forEach((star) => {
+                        const rating = parseInt(star.dataset.rating)
+
+                        star.addEventListener('click', () => {
+                            selectedRating = rating
+                            updateStars(stars, rating)
+                            ratingDisplay.textContent = rating
+                            rateBtn.disabled = false
+                        })
+                    })
+
+                    rateBtn.addEventListener('click', () => {
+                        const comment = document.querySelector(
+                            `textarea[data-game-id="${gameId}"]`
+                        ).value
+                        submitRating(gameId, selectedRating, comment, rateBtn)
+                    })
+                })
+
+                function submitRating(gameId, rating, comment, rateBtn) {
+                    const data = {
+                        rating: rating,
+                        comment: comment,
+                    }
+
+                    rateBtn.disabled = true
+                    rateBtn.textContent = 'Enviando...'
+
+                    fetch(`/games/${gameId}/rating`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    })
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error(
+                                    `HTTP error! status: ${response.status}`
+                                )
+                            }
+                            return response.json()
+                        })
+                        .then((data) => {
+                            console.log(data)
+                        })
+                        .catch((error) => {
+                            console.log(
+                                'Erro ao enviar avaliação:',
+                                error.message
+                            )
+                        })
+                        .finally(() => {
+                            rateBtn.disabled = false
+                            rateBtn.textContent = 'Avaliar'
+                        })
+                }
+            })
+        </script>
+    </body>
+</html>
